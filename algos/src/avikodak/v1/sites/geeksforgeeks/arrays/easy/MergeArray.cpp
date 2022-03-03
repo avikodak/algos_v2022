@@ -25,7 +25,7 @@ void mergeArray(std::vector<int> largeInput, std::vector<int> smallInput) {
 	}
 	int largeInputCrawler = fillCounter;
 	int smallInputCrawler = smallInput.size() - 1;
-	int fillCounter = largeInput.size();
+	fillCounter = largeInput.size();
 	while (largeInputCrawler >= 0 || smallInputCrawler >= 0) {
 		if (largeInputCrawler < 0) {
 			largeInput[--fillCounter] = smallInput[smallInputCrawler--];
