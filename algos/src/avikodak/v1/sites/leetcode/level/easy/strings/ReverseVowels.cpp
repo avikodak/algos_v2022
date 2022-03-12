@@ -1,9 +1,9 @@
 /****************************************************************************************************************************************************
- *  File Name                   : SumOfLeftLeaves.cpp
- *  File Location               : /algos/src/avikodak/v1/sites/leetcode/level/easy/SumOfLeftLeaves.cpp
- *  Created on                  : Mar 9, 2022 :: 7:49:41 PM
+ *  File Name                   : ReverseVowels.cpp
+ *  File Location               : /algos/src/avikodak/v1/sites/leetcode/level/easy/strings/ReverseVowels.cpp
+ *  Created on                  : Mar 10, 2022 :: 7:12:36 PM
  *  Author                      : avikodak
- *  URL                         : https://leetcode.com/problems/sum-of-left-leaves/
+ *  URL                         : https://leetcode.com/problems/reverse-vowels-of-a-string/
  ****************************************************************************************************************************************************/
 
 /****************************************************************************************************************************************************/
@@ -12,22 +12,41 @@
 
 #include "v1/common/Includes.h"
 
-
 class Solution {
 private:
-	int sumOfLeftLeavesUtil(TreeNode *root, bool isLeft) {
-		if (root == nullptr) {
-			return 0;
+	bool isVowel(char ch) {
+		switch (ch) {
+		case 'a':
+		case 'A':
+		case 'e':
+		case 'E':
+		case 'i':
+		case 'I':
+		case 'o':
+		case 'O':
+		case 'u':
+		case 'U':
+			return true;
+		default:
+			return false;
 		}
-		if (isLeft && root->left == nullptr && root->right == nullptr) {
-			return root->val;
-		}
-		return sumOfLeftLeavesUtil(root->left, true)
-				+ sumOfLeftLeavesUtil(root->right, false);
 	}
-
 public:
-	int sumOfLeftLeaves(TreeNode *root) {
-		return sumOfLeftLeavesUtil(root, false);
+	std::string reverseVowels(std::string input) {
+		int start = 0, end = input.size() - 1;
+		while (start < end) {
+			while (start < end && !isVowel(input[start])) {
+				start++;
+			}
+			while (start < end && !isVowel(input[end])) {
+				end--;
+			}
+			if (start < end) {
+				std::swap(input[start], input[end]);
+			}
+			start++;
+			end--;
+		}
+		return input;
 	}
 };

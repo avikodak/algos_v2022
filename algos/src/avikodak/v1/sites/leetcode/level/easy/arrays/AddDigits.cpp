@@ -1,9 +1,9 @@
 /****************************************************************************************************************************************************
- *  File Name                   : SumOfLeftLeaves.cpp
- *  File Location               : /algos/src/avikodak/v1/sites/leetcode/level/easy/SumOfLeftLeaves.cpp
- *  Created on                  : Mar 9, 2022 :: 7:49:41 PM
+ *  File Name                   : AddDigits.cpp
+ *  File Location               : /algos/src/avikodak/v1/sites/leetcode/level/easy/arrays/AddDigits.cpp
+ *  Created on                  : Mar 10, 2022 :: 6:49:30 PM
  *  Author                      : avikodak
- *  URL                         : https://leetcode.com/problems/sum-of-left-leaves/
+ *  URL                         : https://leetcode.com/problems/add-digits/
  ****************************************************************************************************************************************************/
 
 /****************************************************************************************************************************************************/
@@ -12,22 +12,17 @@
 
 #include "v1/common/Includes.h"
 
-
 class Solution {
-private:
-	int sumOfLeftLeavesUtil(TreeNode *root, bool isLeft) {
-		if (root == nullptr) {
-			return 0;
-		}
-		if (isLeft && root->left == nullptr && root->right == nullptr) {
-			return root->val;
-		}
-		return sumOfLeftLeavesUtil(root->left, true)
-				+ sumOfLeftLeavesUtil(root->right, false);
-	}
-
 public:
-	int sumOfLeftLeaves(TreeNode *root) {
-		return sumOfLeftLeavesUtil(root, false);
+	int addDigits(int num) {
+		while (num >= 10) {
+			int temp = num;
+			num = 0;
+			while (temp) {
+				num += temp % 10;
+				temp /= 10;
+			}
+		}
+		return num;
 	}
 };
